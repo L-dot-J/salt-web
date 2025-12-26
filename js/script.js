@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function(){
     // avoid infinite loops
     img.onerror = null;
     // try png in public, then images folder
-    var tries = ['public/logo.png','public/logo.jpg','images/logo-upside-down.png','images/logo.jpg'];
+    var tries = ['public/logo.png','public/logo.png','images/logo-upside-down.png','images/logo.png'];
     var i = 0;
     function tryNext(){
       if(i>=tries.length){ var e = document.createElement('div'); e.className='emoji'; e.textContent='🧂'; cursor.appendChild(e); return; }

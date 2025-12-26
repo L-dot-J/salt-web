@@ -47,10 +47,10 @@ document.addEventListener('DOMContentLoaded', function(){
   // try to use provided logo image; fallback to emoji
   var img = document.createElement('img');
   // Prefer the logo in the public folder if present; fall back to project images and then emoji
-  img.src = 'public/logo.jpeg';
+  img.src = 'public/logo.png';
   img.alt = 'logo';
   img.style.height = '80px';
-  // If public/logo.jpeg fails, try common alternatives, then fall back to emoji
+  // If public/logo.png fails, try common alternatives, then fall back to emoji
   img.onload = function(){ cursor.appendChild(img); };
   img.onerror = function tryFallback(){
     // avoid infinite loops

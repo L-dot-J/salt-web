@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function(){
 (function(){
   if(!document.body) return;
   var path = location.pathname || '';
-  var isLanding = path === '/' || path.endsWith('index.html');
+  var isLanding = path === '/salt-web/' || path.endsWith('/salt-web/index.html');
 
   // Only enable cursor/sprinkle on landing page
   if(!isLanding) return;

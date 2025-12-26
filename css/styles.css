@@ -1,0 +1,133 @@
+/* All-black site styles */
+:root{
+  --bg: #000;
+  --text: #fff;
+  --muted: #bbb;
+  --accent: #fff;
+  --max-width: 1100px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Use a custom element cursor only when `body` has .landing-enabled; header keeps native cursor */
+.landing-enabled{cursor:none}
+.landing-enabled .site-header, .landing-enabled .site-header *{cursor:auto !important}
+.container{
+  width:90%;
+  max-width:var(--max-width);
+  margin:0 auto;
+}
+.site-header{
+  position:sticky;
+  top:0;
+  background:rgba(0,0,0,0.25);
+  backdrop-filter: blur(4px);
+  border-bottom:1px solid rgba(255,255,255,0.03);
+}
+.site-header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 0;
+}
+.logo{
+  color:var(--accent);
+  font-weight:700;
+  letter-spacing:2px;
+  text-decoration:none;
+  font-size:1.05rem;
+}
+
+/* Logo image styling — larger and responsive */
+.logo img{display:block;height:64px;width:auto;max-height:90px}
+
+/* Slightly larger logo on wide screens */
+@media (min-width:900px){
+  .logo img{height:80px}
+}
+
+/* Slightly smaller logo on very small screens */
+@media (max-width:420px){
+  .logo img{height:48px}
+}
+
+/* Salt sprinkle particle */
+
+.salt-particle{
+  position:fixed;
+  left:0;top:0;
+  width:6px;height:6px;border-radius:50%;
+  background: #fff;opacity:1;pointer-events:none;z-index:9999;
+  transform: translate(-50%,-50%) rotate(var(--rot,0deg));
+  animation-name: sprinkle;animation-timing-function: cubic-bezier(.2,.8,.25,1);animation-fill-mode:forwards;
+}
+
+@keyframes sprinkle{
+  0%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(var(--rot,0deg))}
+  60%{opacity:1}
+  100%{opacity:0;transform:translate(calc(var(--dx)), calc(var(--dy))) scale(0.6) rotate(calc(var(--rot) + 90deg))}
+}
+
+/* Custom cursor element */
+.custom-cursor{position:fixed;left:0;top:0;pointer-events:none;z-index:10000;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center}
+.custom-cursor img{display:block;max-width:100%;height:100%;width:auto;filter:drop-shadow(0 1px 1px rgba(0,0,0,0.6));transform:rotate(180deg);transform-origin:50% 50%}
+/* Visual grain (used for collected pile) */
+.salt-grain{position:absolute;width:7px;height:7px;border-radius:50%;background:#fff;pointer-events:none;z-index:9998;box-shadow:0 0 1px rgba(0,0,0,0.6)}
+
+/* Particle element used while falling (absolute, updated by JS physics) */
+.salt-particle{position:fixed;width:7px;height:7px;border-radius:50%;background:#fff;pointer-events:none;z-index:9999;box-shadow:0 0 1px rgba(0,0,0,0.6);animation-timing-function:cubic-bezier(.02,.6,.2,1)}
+
+/* Container for collected salt grains */
+#salt-pile{position:fixed;left:0;right:0;bottom:0;height:120px;pointer-events:none;z-index:9997;overflow:visible}
+
+/* small emoji fallback styling */
+.custom-cursor .emoji{font-size:28px;line-height:1}
+
+/* Accessible hidden text for screen readers */
+.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0;padding:0;margin:-1px}
+.main-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:18px}
+.main-nav a{color:var(--muted);text-decoration:none;padding:6px 8px;border-radius:6px}
+.main-nav a:hover, .main-nav a.active{color:var(--text);background:rgba(255,255,255,0.03)}
+
+.hero{
+  min-height:calc(100vh - 120px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:40px 0;
+}
+.hero-inner{max-width:800px}
+.hero h1{font-size:clamp(2rem,5vw,4rem);margin:0 0 12px}
+.hero p{color:var(--muted);margin:0 0 22px}
+.btn{
+  display:inline-block;
+  text-decoration:none;
+  color:var(--bg);
+  background:var(--text);
+  padding:12px 20px;
+  border-radius:8px;
+  font-weight:600;
+}
+
+.content{padding:60px 0}
+.contact-card{max-width:720px;margin:0 auto}
+.contact-list{list-style:none;padding:0;margin:18px 0;color:var(--muted)}
+.contact-list li{margin:8px 0}
+.site-footer{padding:20px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.03)}
+
+a{color:inherit}
+
+@media (max-width:600px){
+  .main-nav ul{gap:10px}
+  .site-header .container{padding:12px 0}
+}
